@@ -60,8 +60,9 @@ std::string ByteStream::read(const size_t len) {
     if(writed_size <= read_size){
         return "";
     }
+    std::string result = peek_output(len);
     pop_output(len);
-    return peek_output(len);
+    return result;
 }
 
 void ByteStream::end_input() { is_eof = true; }

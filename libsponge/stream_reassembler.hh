@@ -5,23 +5,21 @@
 
 #include <cstdint>
 #include <string>
-#include <map>
-
+#include <unordered_map>
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
 class StreamReassembler {
   private:
     // Your code here -- add private members as necessary.
-    size_t unread_index;  // first unread index,for verify index
-    size_t unreassembler_index; 
-    std::map<size_t,char> buffer;  // buffer for char in data but can not ressambled
-    size_t buffer_index;           // the min_index in buffer,use to compare index to reassemble
+    size_t unassembled_size;  // first unread index,for verify index
+    size_t reassembled_index; 
+    bool is_eof;
+    std::unordered_map<size_t,char> buffer;  // buffer for char in data but can not ressambled
     ByteStream _output;  //!< The reassembled in-order byte stream
     size_t _capacity;    //!< The maximum number of bytes
 
     // this function aim to try reassembler
     void try_reassembler(const size_t index);
-
   public:
     //! \brief Construct a `StreamReassembler` that will store up to `capacity` bytes.
     //! \note This capacity limits both the bytes that have been reassembled,

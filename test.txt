@@ -1,6 +1,0 @@
-首先明确一个概念，就是一个计算机的TCP链接是全双工的，会同时接受和发送的（ACK），所以所得到的数据既要给receiver也要给sender用于发送
-从外部internet得到TCPSegment后会通过segment_received(TCPSegment)函数，解析其中的数据，同时传给TCPSender的ack_receivered(ackno,windows_size)函数,
-TCPReceiver的segment_received(TCPSegment)函数分别处理，下面分两条线处理
-1. TCPSender收到的后处理完交给ByteStream，然后在再合适的时候从ByteStream中read出来，组成新的TCPSegment(seqno,SYN,payload,FIN)
-    然后和TCPReceiver一起组合通过TCPSocket一起发送
-2. TCPReceiver收到后交给StreamReassembler重组后放入ByteStream，由别人拿去（from socket)
