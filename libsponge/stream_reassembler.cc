@@ -82,4 +82,6 @@ void StreamReassembler::try_reassembler(const size_t index){
 
 size_t StreamReassembler::unassembled_bytes() const { return unassembled_size; }
 
+size_t StreamReassembler::ackno()  const { return reassembled_index;}
+
 bool StreamReassembler::empty() const { return unassembled_size==0; }

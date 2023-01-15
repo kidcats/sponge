@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             // "program": "${workspaceFolder}/build/apps/webget",
-            "program": "${workspaceFolder}/build/tests/fsm_stream_reassembler_cap",
+            "program": "${workspaceFolder}/build/tests/recv_special",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
