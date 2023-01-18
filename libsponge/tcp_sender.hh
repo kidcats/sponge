@@ -32,11 +32,29 @@ class TCPSender {
     //! the (absolute) sequence number for the next byte to be sent
     uint64_t _next_seqno{0};
 
+    //! time retransmission while time delay double value
+    uint64_t _rto;
+    bool _syn;
+    bool _fin;
+    size_t _window_size;
+    uint64_t _recv_ack_seqno;
+    std::queue<TCPSegment> buffer;
+    size_t _byte_size_in_fly;
+    size_t _state;
+    size_t _con_retrans_nums;
+    size_t _time_stmp; // 用于记录时间戳
+
+    void state_flow();
+
+    // 根据当前的状态选择合适的segment返回
+    void fill_segment();
+
   public:
     //! Initialize a TCPSender
     TCPSender(const size_t capacity = TCPConfig::DEFAULT_CAPACITY,
               const uint16_t retx_timeout = TCPConfig::TIMEOUT_DFLT,
-              const std::optional<WrappingInt32> fixed_isn = {});
+              const std::optional<WrappingInt32> fixed_isn = {}
+              );
 
     //! \name "Input" interface for the writer
     //!@{

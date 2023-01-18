@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             // "program": "${workspaceFolder}/build/apps/webget",
-            "program": "${workspaceFolder}/build/tests/recv_special",
+            "program": "${workspaceFolder}/build/tests/send_transmit",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
