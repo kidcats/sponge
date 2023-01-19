@@ -43,6 +43,7 @@ class TCPSender {
     size_t _state;
     size_t _con_retrans_nums;
     size_t _time_stmp; // 用于记录时间戳
+    bool _no_windows;
 
     void state_flow();
 
